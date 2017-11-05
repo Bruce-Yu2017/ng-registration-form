@@ -1,0 +1,24 @@
+<h1>Registration</h1>
+<div *ngIf = "register">
+  <p class="info">Thank you for registering with us {{user.first_name}}.</p>
+  <p class="info">We just sent you a confirmation email at {{user.email}}, </p>
+  <p class="info"> and we will send all mail to {{user.street_address}}, {{user.city}}, {{user.state}}. </p>
+</div>
+<form (submit) = "onSubmit()" name="myForm" #myForm = "ngForm">
+  First name: <input type="text" name="first_name" required  [(ngModel)]="user.first_name" #first_name = "ngModel" >{{first_name.errors | json}}<br>
+  Last name: <input type="text" name="last_name" required  [(ngModel)]="user.last_name" #last_name = "ngModel" >{{last_name.errors | json}}<br>
+  Email: <input type="text" name="email" required minlength="4" maxlength="24" [(ngModel)]="user.email" #email = "ngModel" >{{email.errors | json}}<br>
+  Password: <input type="text" name="password_name" required minlength="4" maxlength="24" [(ngModel)]="user.password" #password = "ngModel" >{{password.errors | json}}<br>
+  Password_confirm: <input type="text" name="password_confirm" required minlength="4" maxlength="24" [(ngModel)]="user.password_confirm" #password_confirm = "ngModel" >{{password_confirm.errors | json}}<br>
+  Street address: <input type="text" name="street_address" required minlength="4" maxlength="24" [(ngModel)]="user.street_address" #street_address = "ngModel" >{{street_address.errors | json}}<br>
+  Apt: <input type="text" name="apt" required minlength="4" maxlength="24" [(ngModel)]="user.apt" #apt = "ngModel" >{{apt.errors | json}}<br>
+  City: <input type="text" name="city" required minlength="4" maxlength="24" [(ngModel)]="user.city" #city = "ngModel" >{{city.errors | json}}<br>
+  State: <select name="state" [(ngModel)]="user.state" #state = "ngModel">
+    <option>CA</option>
+    <option>WA</option>
+    <option>NJ</option>
+    <option>AZ</option>
+  </select><br>
+  I am feeling lucky: <input type="radio" value="1" name="yes" >Yes <input type="radio" value="0" name="No" >No <br>
+  <button type="submit" ng-disabled="false" *ngIf = "myForm.valid">submit</button>
+</form>
